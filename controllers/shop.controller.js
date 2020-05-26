@@ -29,7 +29,7 @@ module.exports.index = function(req, res) {
     console.log(result);
     
     res.render("shop/index", {
-      books: result.books
+      books: result
     });
   });
 };
