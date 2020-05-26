@@ -41,20 +41,36 @@ module.exports.postCreate = function(req, res) {
   var title = req.body.title;
   var des = req.body.description;
   var image = "https://29-my-shop.glitch.me/" + req.file.path.slice(7);
-
+  
   cloudinary.uploader.upload(image, function(error, result) {
     console.log(result, error);
-    var book = new Shop({
-      title: title,
-      description: des,
-      coverUrl: result.url
-    });
+    var book = {
+      id: shortid.generate(),
+      title: "Không gia đình",
+      description: "Câu chuyện về tình thương giữa 2 con người lạ lẫm",
+      coverUrl: "https://cdn.glitch.com/a0fd4135-1b04-45e7-b0fd-e9aac260f6c1%2F4e598e29-e292-417e-955e-99facd76ce55.image.png?v=1589525573393"
+    };
     
-    book.save(function (err, book) {
-      if (err) return console.error(err);
-      console.log(book.name + " saved to bookstore collection.");
-    });
-  });
+    Shop.findOneAndUpdate({ userId: res.locals.userId }, book);
+  }
+
+//   cloudinary.uploader.upload(image, function(error, result) {
+//     console.log(result, error);
+//     // var book = {
+//     //   id: shortid.generate(),
+//     //   title: "Không gia đình",
+//     //   description: "Câu chuyện về tình thương giữa 2 con người lạ lẫm",
+//     //   coverUrl: "https://cdn.glitch.com/a0fd4135-1b04-45e7-b0fd-e9aac260f6c1%2F4e598e29-e292-417e-955e-99facd76ce55.image.png?v=1589525573393" 
+//     // };
+    
+// //     book.save(function (err, book) {
+// //       if (err) return console.error(err);
+// //       console.log(book.name + " saved to bookstore collection.");
+// //     });
+// //   });
+  
+//     // Shop.findOneAndUpdate({ userId: res.locals.userId }, book);
+//   }
 
   res.redirect("/shops/books");
 };
