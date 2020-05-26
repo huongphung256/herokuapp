@@ -1,9 +1,20 @@
 extends ../layouts/common
 
 block content
-  h1 Book List
+  h1 Book Store
 
-  a(href="/books/add") Thêm sách
+  a(href="/shops/books/create") Thêm sách
   
   if !books
-    .alert.alert-primary No book in your shop. Please Add!
+    .alert.alert-primary.mt-2 No book in your shop. Please Add!
+  else 
+      .row.mt-3
+        each item in books
+          .col-sm-6.col-md-4.col-lg-3
+            .card.mb-3
+              img.card-img-top(src=item.coverUrl)
+              .card-body
+                h5.card-title= item.title
+                p.card-text= item.description
+                a.btn.btn-primary.mt-2(href='#') Thêm vào giỏ
+                

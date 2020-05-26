@@ -28,8 +28,10 @@ module.exports.index = async function(req, res) {
     });
   }
   
+  var books = shop.books;
+  
   res.render("shop/index", {
-    books: shop.books
+    books: books
   });
 };
 
