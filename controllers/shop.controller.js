@@ -11,6 +11,7 @@ cloudinary.config({
 });
 
 module.exports.index = function(req, res) {
+  var userId = req.params.id;
   res.render("shop/index");
 };
 

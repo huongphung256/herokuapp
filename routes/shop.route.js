@@ -5,7 +5,7 @@ var shopController = require('../controllers/shop.controller.js');
 var router = express.Router();
 
 //show book list
-router.get('/shops/:id/books', shopController.index);
+router.get('/:id/books', shopController.index);
 
 router.get('/books/create', shopController.create);
 

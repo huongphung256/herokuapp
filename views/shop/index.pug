@@ -1,19 +1,8 @@
-extends ./layouts/common
+extends ../layouts/common
 
 block content
   h1 Book List
 
-  a(href="/shops/books/create") Thêm sách
-
-  .row.mt-3
-    each item in books
-      .col-sm-6.col-md-4.col-lg-3
-        .card.mb-3
-          img.card-img-top(src=item.coverUrl)
-          .card-body
-            h5.card-title= item.title
-            p.card-text= item.description
-            a.btn.btn-primary.mr-2(href='/books/' + item._id + '/delete') Xóa 
-            a.btn.btn-primary.mr-2(href='/books/' + item._id + '/update') Update
-            a.btn.btn-primary.mt-2(href='/books/cart/add/' + item._id) Thêm vào giỏ
-            a.btn.btn-primary.mt-2(href='/books/cart/transaction/' + item._id) Thuê sách
+  a(href="/books/add") Thêm sách
+  
+  
