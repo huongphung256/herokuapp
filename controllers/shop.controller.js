@@ -26,10 +26,10 @@ module.exports.index = function(req, res) {
       });
     }
     
-    console.log(result);
+    console.log(result.books);
     
     res.render("shop/index", {
-      books: result
+      books: result.books
     });
   });
 };
