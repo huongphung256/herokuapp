@@ -1,9 +1,9 @@
-extends ./layouts/common
+extends ../layouts/common
 
 block content
   h1 Add Book 
 
-  form(method="POST", enctype="multipart/form-data")
+  form(action="/shops/books/create", method="POST", enctype="multipart/form-data")
     .form-group
       label(for='exampleInputEmail1') Title
       input#exampleInputEmail1.form-control(type='text', name="title")

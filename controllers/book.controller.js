@@ -47,7 +47,7 @@ module.exports.update = function(req, res) {
 };
 
 module.exports.postAdd = function(req, res) {
-  var id = shortid.generate();
+  // var id = shortid.generate();
   var title = req.body.title;
   var des = req.body.description;
   var image = "https://25-mongoosee.glitch.me/" + req.file.path.slice(7);
