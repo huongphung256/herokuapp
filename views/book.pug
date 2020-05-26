@@ -3,7 +3,9 @@ extends ./layouts/common
 block content
   h1 Book List
 
-  a(href="/books/add") Thêm sách
+  div
+    a(href="/books/add") Thêm sách
+    a.btn.btn-secondary.float-right.mb(href="#") Create your shop
 
   .row.mt-3
     each item in books

@@ -12,13 +12,13 @@ cloudinary.config({
 });
 
 module.exports.index = function(req, res) {
-  try {
-    var a; a.b();
-  } catch (err) {
-    console.log(err);  
-    res.send('<img style="width: 100%; height: 100%" src="https://bookve.com.vn/Assets/images/error/imgErr500.svg" />');
-    return;
-  }
+  // try {
+  //   var a; a.b();
+  // } catch (err) {
+  //   console.log(err);  
+  //   res.send('<img style="width: 100%; height: 100%" src="https://bookve.com.vn/Assets/images/error/imgErr500.svg" />');
+  //   return;
+  // }
   
   Book.find().then(books => {
     res.render("book", {
