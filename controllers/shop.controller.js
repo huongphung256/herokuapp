@@ -14,15 +14,23 @@ module.exports.index = async function(req, res) {
   var userId = req.params.id;
   var err;
   
+  var shop = new Shop({
+      
+    });
+    
+    book.save(function (err, book) {
+      if (err) return console.error(err);
+      console.log(book.name + " saved to bookstore collection.");
+    });
+  
   var shop = await Shop.findOne({ userId: userId });
  
-  if (!shop.books) {
-    err = 'No book in your shop!'
-  }
+  // if (!shop.books) {
+  //   err = 'No book in your shop!';
+  // }
   
   res.render("shop/index", {
-    books: shop.books,
-    err: err
+    books: shop.books
   });
 };
 
