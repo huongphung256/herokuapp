@@ -21,10 +21,11 @@ module.exports.index = function(req, res) {
   //   return;
   // }
   
+  
   Book.find().then(books => {
     res.render("book", {
       books: books,
-      user: res.locals.user
+      userId: res.locals.userId
     });
   });
 };

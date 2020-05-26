@@ -34,7 +34,6 @@ module.exports.index = function(req, res) {
 };
 
 module.exports.create = function(req, res) {
-  console.log(res.locals.user);
   res.render("add");
 };
 
