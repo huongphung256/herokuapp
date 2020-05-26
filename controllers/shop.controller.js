@@ -1,3 +1,19 @@
+require("dotenv").config();
+
+var cloudinary = require("cloudinary").v2;
+
+var Book = require("../models/book.model.js");
+
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.API_KEY,
+  api_secret: process.env.API_SECRET
+});
+
+module.exports.index = function(req, res) {
+  res.render("shop/index");
+};
+
 module.exports.create = function(req, res) {
   res.render("add");
 };
@@ -9,14 +25,6 @@ module.exports.postCreate = function(req, res) {
 
   cloudinary.uploader.upload(image, function(error, result) {
     console.log(result, error);
-    // db.get("books")
-    //   .push({
-    //     id: id,
-    //     title: title,
-    //     description: des,
-    //     coverUrl: result.url
-    //   })
-    //   .write();
     var book = new Book({
       title: title,
       description: des,
@@ -29,5 +37,5 @@ module.exports.postCreate = function(req, res) {
     });
   });
 
-  res.redirect("/books");
+  res.redirect("/shops/books");
 };
