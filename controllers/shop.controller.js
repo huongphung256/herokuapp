@@ -11,12 +11,11 @@ cloudinary.config({
   api_secret: process.env.API_SECRET
 });
 
-module.exports.index = async function(req, res) {
+module.exports.index = function(req, res) {
   var userId = req.params.id;
   
-  var shop = await Shop.findOne({ userId: userId });
-  
-  if (!shop) {
+  Shop.findOne({ userId: userId }).then(result => {
+    if (!shop) {
      var shop = new Shop({
       userId: userId,
       books: []
@@ -28,10 +27,9 @@ module.exports.index = async function(req, res) {
     });
   }
   
-  var books = shop.books;
-  
   res.render("shop/index", {
-    books: books
+    books: result.books
+  });
   });
 };
 
@@ -40,23 +38,23 @@ module.exports.create = function(req, res) {
 };
 
 module.exports.postCreate = function(req, res) {
-//   var title = req.body.title;
-//   var des = req.body.description;
-//   var image = "https://29-my-shop.glitch.me/" + req.file.path.slice(7);
+  var title = req.body.title;
+  var des = req.body.description;
+  var image = "https://29-my-shop.glitch.me/" + req.file.path.slice(7);
 
-//   cloudinary.uploader.upload(image, function(error, result) {
-//     console.log(result, error);
-//     var book = new Book({
-//       title: title,
-//       description: des,
-//       coverUrl: result.url
-//     });
+  cloudinary.uploader.upload(image, function(error, result) {
+    console.log(result, error);
+    var book = new Shop({
+      title: title,
+      description: des,
+      coverUrl: result.url
+    });
     
-//     book.save(function (err, book) {
-//       if (err) return console.error(err);
-//       console.log(book.name + " saved to bookstore collection.");
-//     });
-//   });
+    book.save(function (err, book) {
+      if (err) return console.error(err);
+      console.log(book.name + " saved to bookstore collection.");
+    });
+  });
 
   res.redirect("/shops/books");
 };
