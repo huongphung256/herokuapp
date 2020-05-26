@@ -37,9 +37,8 @@ app.use(cookieParser("hauoeiwnwh7618y989"));
 app.use(sessionMiddleware);
 
 app.use("/users", authMiddleware.authLogin, cookieMiddleware.cookie, userRoute);
-app.use("/books", cookieMiddleware.cookie, bookRoute);
-app.use(
-  "/transactions",
+app.use("/books", authMiddleware.authLogin, cookieMiddleware.cookie, bookRoute);
+app.use("/transactions",
   authMiddleware.authLogin,
   cookieMiddleware.cookie,
   transactionRoute

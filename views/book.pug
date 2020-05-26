@@ -5,7 +5,7 @@ block content
 
   div
     a(href="/books/add") Thêm sách
-    a.btn.btn-success.float-right(href="/shops/books/create") Create your shop
+    a.btn.btn-success.float-right(href="/shops/" + res.locals.user._id + "/books") Create your shop
 
   .row.mt-3
     each item in books
