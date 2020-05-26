@@ -23,7 +23,8 @@ module.exports.index = function(req, res) {
   
   Book.find().then(books => {
     res.render("book", {
-      books: books
+      books: books,
+      user: res.locals.user
     });
   });
 };
