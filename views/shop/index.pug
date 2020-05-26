@@ -5,5 +5,5 @@ block content
 
   a(href="/books/add") Thêm sách
   
-  if err 
-    .alert.alert-primary= err
+  if !books
+    .alert.alert-primary No book in your shop. Please Add!

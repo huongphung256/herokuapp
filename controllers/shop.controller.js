@@ -1,6 +1,7 @@
 require("dotenv").config();
 
 var cloudinary = require("cloudinary").v2;
+const shortid = require("shortid");
 
 var Shop = require("../models/shop.model.js");
 
@@ -12,22 +13,20 @@ cloudinary.config({
 
 module.exports.index = async function(req, res) {
   var userId = req.params.id;
-  var err;
-  
-  var shop = new Shop({
-      
-    });
-    
-    book.save(function (err, book) {
-      if (err) return console.error(err);
-      console.log(book.name + " saved to bookstore collection.");
-    });
   
   var shop = await Shop.findOne({ userId: userId });
- 
-  // if (!shop.books) {
-  //   err = 'No book in your shop!';
-  // }
+  
+  if (!shop) {
+     var shop = new Shop({
+      userId: userId,
+      books: []
+    });
+    
+    shop.save(function (err, book) {
+      if (err) return console.error(err);
+      console.log("shop saved to bookstore collection.");
+    });
+  }
   
   res.render("shop/index", {
     books: shop.books
