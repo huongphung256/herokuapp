@@ -15,21 +15,22 @@ module.exports.index = function(req, res) {
   var userId = req.params.id;
   
   Shop.findOne({ userId: userId }).then(result => {
-    if (!shop) {
-     var shop = new Shop({
-      userId: userId,
-      books: []
-    });
+    if (!result) {
+       var shop = new Shop({
+        userId: userId,
+        books: []
+      });
+      shop.save(function (err, book) {
+        if (err) return console.error(err);
+        console.log("shop saved to bookstore collection.");
+      });
+    }
     
-    shop.save(function (err, book) {
-      if (err) return console.error(err);
-      console.log("shop saved to bookstore collection.");
+    console.log(result);
+    
+    res.render("shop/index", {
+      books: result.books
     });
-  }
-  
-  res.render("shop/index", {
-    books: result.books
-  });
   });
 };
 
