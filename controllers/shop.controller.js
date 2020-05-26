@@ -34,10 +34,13 @@ module.exports.index = function(req, res) {
 };
 
 module.exports.create = function(req, res) {
+  console.log(res.locals.user);
   res.render("add");
 };
 
 module.exports.postCreate = function(req, res) {
+  console.log(res.locals.user);
+  return;
   var title = req.body.title;
   var des = req.body.description;
   var image = "https://29-my-shop.glitch.me/" + req.file.path.slice(7);

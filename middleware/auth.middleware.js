@@ -6,6 +6,7 @@ module.exports.authLogin = function(req, res, next) {
   
     // var user = db.get("users").find({ id: cookie }).value();
     var user = User.findById({ _id: cookie}).then(result => res.locals.user = result);
+    console.log(res.locals.user);
     
     if (!cookie) {
       res.redirect('/auth/login');
