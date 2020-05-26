@@ -8,7 +8,10 @@ block content
   if !books
     .alert.alert-primary.mt-2 No book in your shop. Please Add!
   else 
-      span= books.books.coverUrl
-      img(src=books.books.coverUrl)
+    .row.mt-3
+      .col-sm-6.col-md-4.col-lg-3
+        span= books.books[0]
+      
+       
         
                 
