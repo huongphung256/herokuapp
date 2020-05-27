@@ -1,7 +1,6 @@
 require("dotenv").config();
 
 var cloudinary = require("cloudinary").v2;
-const shortid = require("shortid");
 
 var Shop = require("../models/shop.model.js");
 
@@ -26,8 +25,6 @@ module.exports.index = function(req, res) {
       });
     }
 
-    console.log(result.books);
-
     res.render("shop/index", {
       books: result.books
     });
@@ -45,10 +42,9 @@ module.exports.postCreate = function(req, res) {
 
   cloudinary.uploader.upload(image, function(error, result) {
     // console.log(result, error);
-
+  
     var book = [
       {
-        id: shortid.generate(),
         title: title,
         description: des,
         coverUrl: result.url
