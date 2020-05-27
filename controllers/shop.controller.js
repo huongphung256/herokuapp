@@ -39,7 +39,7 @@ module.exports.create = function(req, res) {
 };
 
 module.exports.postCreate = function(req, res) {
-  console.log(res.locals.user);
+  console.log(res.locals.userId);
   return;
   var title = req.body.title;
   var des = req.body.description;
@@ -48,7 +48,7 @@ module.exports.postCreate = function(req, res) {
   cloudinary.uploader.upload(image, function(error, result) {
     // console.log(result, error);
     
-    var book = {
+    var book = [{
       id: shortid.generate(),
       title: title,
       description: des,
