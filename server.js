@@ -53,7 +53,9 @@ app.use("/shops", authMiddleware.authLogin, shopRoute);
 
 app.get("/", function(req, res) {
   res.cookie("cookie", shortid.generate());
-  res.send("Hello everyone!");
+  res.send(`Hello everyone!
+    Hãy vào /books để tạo your shop nhé!
+`);
 });
 
 // listen for requests :)
