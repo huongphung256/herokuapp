@@ -31,6 +31,12 @@ app.set("view engine", "pug");
 
 app.use(express.static("public"));
 
+//fix lỗi trong lấy được dữ liệu trong api từ react app
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  next();
+});
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser("hauoeiwnwh7618y989"));
